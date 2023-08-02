@@ -1,0 +1,52 @@
+<div class="signup-page">
+  <h2>Sign Up</h2>
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
+      <div *ngIf="signupForm.controls['username']?.hasError('usernameExists')">
+        Username is already taken.
+      </div>
+    </div>
+
+   
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+     <div *ngIf="signupForm.controls['email']?.hasError('emailExists')">
+        Email is already registered.
+      </div>
+    <div *ngIf="signupForm.controls['email']?.hasError('invalidFormat')">
+        Invalid email format.
+      </div>
+    </div>
+
+  
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
+      <div *ngIf="signupForm.controls['password']?.hasError('invalidFormat')">
+        Password must contain at least 8 characters, including 1 uppercase letter, 1 number, and 1 special symbol.
+      </div>
+    
+    </div>
+
+   
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password"
+             id="confirmPassword"
+             name="confirmPassword"
+             [(ngModel)]="user.confirmPassword"
+             required>
+     
+      <div *ngIf="signupForm.controls['confirmPassword']?.hasError('passwordMismatch')">
+        Passwords do not match.
+      </div>
+    </div>
+
+    
+    <button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+  </form>
+  <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+</div>

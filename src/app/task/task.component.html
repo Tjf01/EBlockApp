@@ -1,0 +1,35 @@
+<div class="task-page">
+  <div class="task-submenu">
+    <ul>
+      <li (click)="filterTasks('all')" [class.selected]="currentCategory === 'all'">All</li>
+      <li (click)="filterTasks('personal')" [class.selected]="currentCategory === 'personal'">Personal</li>
+      <li (click)="filterTasks('work')" [class.selected]="currentCategory === 'work'">Work</li>
+      <li (click)="filterTasks('wishlist')" [class.selected]="currentCategory === 'wishlist'">Wishlist</li>
+    </ul>
+  </div>
+
+  <div class="task-input">
+    <input type="text" [(ngModel)]="newTask" (keyup.enter)="addTask()" placeholder="Enter a task..." />
+    <input type="date" [(ngModel)]="newTaskDate" /> 
+    <button (click)="addTask()">Add Task</button>
+  </div>
+
+  <div class="task-list">
+    <div *ngFor="let task of filteredTasks">
+      <label [class.done]="task.isDone" [attr.for]="'task-checkbox-' + task._id">
+        <input type="checkbox" [(ngModel)]="task.isDone" (change)="updateTaskStatus(task)" [attr.id]="'task-checkbox-' + task._id" /> 
+        {{ task.title }}
+        <span *ngIf="task.date">({{ task.date | date: 'medium' }})</span> 
+      </label>
+      <span *ngIf="editTaskId === task._id">
+        <input type="date" [(ngModel)]="task.date" />
+        <button (click)="updateTaskDate(task)">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </span>
+      <span *ngIf="editTaskId !== task._id">
+        <button (click)="editTask(task)">Edit</button>
+        <button (click)="deleteTask(task._id)">Delete</button>
+      </span>
+    </div>
+  </div>
+</div>

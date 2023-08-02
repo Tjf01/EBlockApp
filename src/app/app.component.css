@@ -1,0 +1,61 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f1f1f1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: black;
+  opacity: 0.7;
+  color: ghostwhite;
+  padding: 30px;
+  margin-bottom: 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+nav ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+  nav ul.menu li {
+    margin-right: 20px;
+  }
+
+    nav ul.menu li:last-child {
+      margin-right: 0;
+    }
+
+    nav ul.menu li a {
+      color: ghostwhite;
+      text-decoration: none;
+      opacity: 0.7;
+      font-size: 20px;
+    }
+
+      nav ul.menu li a:hover {
+        text-decoration: underline;
+      }
+
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:30PX;
+  color:darkgoldenrod;
+  opacity:0.7;
+}

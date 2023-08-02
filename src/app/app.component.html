@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="app.component.css">
+  <title>Your Page Title</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a routerLink="/task" routerLinkActive="active">TASKS</a></li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/login" routerLinkActive="active">LOGIN</a></li>
+        <li *ngIf="isLoggedIn"><a (click)="logout()">LOGOUT</a></li>
+      </ul>
+    </nav>
+    <div class="welcome-container" *ngIf="isLoggedIn">
+      <span class="welcome-message">Welcome, {{ username }}!</span>
+    </div>
+  </header>
+
+  <router-outlet></router-outlet>
+</body>
+
+</html>
